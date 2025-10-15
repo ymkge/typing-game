@@ -63,8 +63,15 @@ p {
 }
 
 .quote-display .correct {
-    color: #28a745; /* Brighter green */
+    color: #adb5bd; /* A lighter grey for typed characters */
 }
+
+/* Style for the character at the current cursor position */
+.quote-display span.current {
+    background-color: #dee2e6;
+    border-radius: 3px;
+}
+
 
 .quote-display .incorrect {
     color: #dc3545; /* Brighter red */
@@ -180,3 +187,169 @@ p {
     cursor: not-allowed;
     opacity: 0.7;
 }
+
+/* --- Difficulty Selection --- */
+#difficulty-selection {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out; /* Reuse existing animation */
+}
+
+.difficulty-button {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.3em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: white;
+}
+
+.difficulty-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.15);
+}
+
+.difficulty-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific colors for difficulty buttons */
+.difficulty-button[data-difficulty="Easy"] {
+    background-color: #28a745; /* Green */
+}
+.difficulty-button[data-difficulty="Easy"]:hover {
+    background-color: #218838;
+}
+
+.difficulty-button[data-difficulty="Normal"] {
+    background-color: #ffc107; /* Yellow */
+    color: #333;
+}
+.difficulty-button[data-difficulty="Normal"]:hover {
+    background-color: #e0a800;
+}
+
+.difficulty-button[data-difficulty="Hard"] {
+    background-color: #dc3545; /* Red */
+}
+.difficulty-button[data-difficulty="Hard"]:hover {
+    background-color: #c82333;
+}
+
+/* --- Result Modal --- */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    animation: fadeIn 0.5s;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px 40px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    position: relative;
+    animation: slideIn 0.5s;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    font-family: 'Press Start 2P', cursive;
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+.result-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.result-item {
+    background-color: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1.2em;
+}
+
+.result-label {
+    font-weight: bold;
+    color: #555;
+}
+
+#result-score, #result-wpm, #result-accuracy, #result-difficulty {
+    font-weight: bold;
+    color: #007bff;
+    font-size: 1.3em;
+    margin-left: 10px;
+}
+
+.highscore-section {
+    margin-bottom: 30px;
+}
+
+#highscore-list {
+    list-style-type: decimal;
+    padding-left: 40px;
+    text-align: left;
+}
+
+#highscore-list li {
+    font-size: 1.2em;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+#highscore-list li:last-child {
+    border-bottom: none;
+}
+
+#play-again-button {
+    background-color: #28a745;
+    margin-top: 10px;
+}
+#play-again-button:hover {
+    background-color: #218838;
+}
+

@@ -9,27 +9,68 @@
 <body>
     <div class="container">
         <h1>タイピングゲーム</h1>
-        <p>60秒間でできるだけ多くの単語を正確にタイプしてください。</p>
-        <div id="quote-display" class="quote-display"></div>
-        <textarea id="quote-input" class="quote-input" autofocus></textarea>
-        <div class="stats-and-controls">
-            <div class="stats">
-                <div class="stat">
-                    <div class="label">タイマー</div>
-                    <div id="timer" class="value">60</div>
+        <p>難易度を選択してゲームを開始してください。</p>
+
+        <div id="difficulty-selection">
+            <button class="difficulty-button" data-difficulty="Easy">Easy</button>
+            <button class="difficulty-button" data-difficulty="Normal">Normal</button>
+            <button class="difficulty-button" data-difficulty="Hard">Hard</button>
+        </div>
+
+        <div id="game-area" style="display: none;">
+            <div id="quote-display" class="quote-display"></div>
+            <textarea id="quote-input" class="quote-input" autofocus></textarea>
+            <div class="stats-and-controls">
+                <div class="stats">
+                    <div class="stat">
+                        <div class="label">タイマー</div>
+                        <div id="timer" class="value">60</div>
+                    </div>
+                    <div class="stat">
+                        <div class="label">スコア</div>
+                        <div id="score" class="value">0</div>
+                    </div>
                 </div>
-                <div class="stat">
-                    <div class="label">スコア</div>
-                    <div id="score" class="value">0</div>
+                <div class="controls">
+                    <button id="pause-button" class="control-button">一時停止</button>
+                    <button id="end-game-button" class="control-button">ゲーム終了</button>
+                    <button id="restart-button" class="control-button">リスタート</button>
                 </div>
-            </div>
-            <div class="controls">
-                <button id="pause-button" class="control-button">一時停止</button>
-                <button id="end-game-button" class="control-button">ゲーム終了</button>
-                <button id="restart-button" class="control-button">リスタート</button>
             </div>
         </div>
     </div>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>結果</h2>
+            <div class="result-details">
+                <div class="result-item">
+                    <span class="result-label">難易度:</span>
+                    <span id="result-difficulty"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">スコア:</span>
+                    <span id="result-score"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">WPM:</span>
+                    <span id="result-wpm"></span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">正答率:</span>
+                    <span id="result-accuracy"></span>
+                </div>
+            </div>
+            <div class="highscore-section">
+                <h3>ハイスコアランキング</h3>
+                <ol id="highscore-list"></ol>
+            </div>
+            <button id="play-again-button" class="control-button">もう一度プレイ</button>
+        </div>
+    </div>
+
     <script src="game.js"></script>
 </body>
 </html>
