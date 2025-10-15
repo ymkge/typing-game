@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>タイピングゲーム</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>タイピングゲーム</h1>
+        <p>60秒間でできるだけ多くの単語を正確にタイプしてください。</p>
+        <div id="quote-display" class="quote-display"></div>
+        <textarea id="quote-input" class="quote-input" autofocus></textarea>
+        <div class="stats-and-controls">
+            <div class="stats">
+                <div class="stat">
+                    <div class="label">タイマー</div>
+                    <div id="timer" class="value">60</div>
+                </div>
+                <div class="stat">
+                    <div class="label">スコア</div>
+                    <div id="score" class="value">0</div>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="pause-button" class="control-button">一時停止</button>
+                <button id="end-game-button" class="control-button">ゲーム終了</button>
+                <button id="restart-button" class="control-button">リスタート</button>
+            </div>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>

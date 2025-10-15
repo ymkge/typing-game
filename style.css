@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Gradient background */
+    color: #333;
+    overflow: hidden; /* Prevent scrollbars from appearing */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2); /* Stronger shadow */
+    text-align: center;
+    width: 90%;
+    max-width: 900px;
+    animation: fadeIn 1s ease-out; /* Simple fade-in animation */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-family: 'Press Start 2P', cursive; /* Retro game font */
+    color: #007bff;
+    margin-bottom: 15px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px #0056b3;
+}
+
+p {
+    margin-bottom: 25px;
+    color: #555;
+    font-size: 1.1em;
+}
+
+.quote-display {
+    background-color: #f8f9fa;
+    border: 2px solid #007bff; /* More prominent border */
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    font-size: 1.8em;
+    line-height: 1.7;
+    text-align: left;
+    white-space: pre-wrap;
+    min-height: 100px; /* Ensure some height even if quote is short */
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.quote-display span {
+    transition: color 0.1s ease; /* Smooth color transition */
+}
+
+.quote-display .correct {
+    color: #28a745; /* Brighter green */
+}
+
+.quote-display .incorrect {
+    color: #dc3545; /* Brighter red */
+    text-decoration: none; /* Remove underline for cleaner look */
+    background-color: rgba(220, 53, 69, 0.2); /* Light red background for error */
+    border-radius: 3px;
+}
+
+.quote-input {
+    width: calc(100% - 50px); /* Adjust padding */
+    padding: 18px;
+    font-size: 1.4em;
+    border: 2px solid #007bff;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    resize: none;
+    outline: none;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quote-input:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 0 0.3rem rgba(0, 123, 255, 0.35);
+}
+
+.stats-and-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    font-size: 1.4em;
+    background-color: #e9ecef;
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.stat .label {
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 5px;
+}
+
+.stat .value {
+    color: #007bff;
+    font-size: 1.8em;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.control-button {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+.control-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.control-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific button colors */
+#restart-button {
+    background-color: #28a745; /* Green */
+}
+#restart-button:hover {
+    background-color: #218838;
+}
+
+#pause-button {
+    background-color: #ffc107; /* Yellow/Orange */
+    color: #333;
+}
+#pause-button:hover {
+    background-color: #e0a800;
+}
+
+#end-game-button {
+    background-color: #dc3545; /* Red */
+}
+#end-game-button:hover {
+    background-color: #c82333;
+}
+
+/* Disabled state for input */
+.quote-input:disabled {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
