@@ -183,7 +183,16 @@ function renderNewQuote() {
 }
 
 function getRandomQuote() {
-    return filteredQuotes[Math.floor(Math.random() * filteredQuotes.length)];
+    if (filteredQuotes.length <= 1) {
+        return filteredQuotes[0];
+    }
+
+    let nextQuote;
+    do {
+        nextQuote = filteredQuotes[Math.floor(Math.random() * filteredQuotes.length)];
+    } while (nextQuote === currentQuote);
+
+    return nextQuote;
 }
 
 function handleInput() {
