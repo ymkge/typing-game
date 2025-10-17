@@ -98,5 +98,11 @@
   { "id": 97, "text": "Good programmers write code that humans can understand.", "difficulty": "Hard", "category": "Programming", "japanese": "良いプログラマーは人間が理解できるコードを書く。" },
   { "id": 98, "text": "First, solve the problem. Then, write the code.", "difficulty": "Normal", "category": "Programming", "japanese": "まず問題を解決せよ。それからコードを書け。" },
   { "id": 99, "text": "The best way to predict the future is to invent it.", "difficulty": "Normal", "category": "Programming", "japanese": "未来を予測する最善の方法は、それを発明することだ。" },
-  { "id": 100, "text": "Measuring programming progress by lines of code is like measuring aircraft building progress by weight.", "difficulty": "Hard", "category": "Programming", "japanese": "コードの行数でプログラミングの進捗を測るのは、航空機の製造の進捗を重量で測るようなものだ。" }
+  { "id": 100, "text": "Measuring programming progress by lines of code is like measuring aircraft building progress by weight.", "difficulty": "Hard", "category": "Programming", "japanese": "コードの行数でプログラミングの進捗を測るのは、航空機の製造の進捗を重量で測るようなものだ。" },
+  { "id": 101, "text": "The purpose of our lives is to be happy.", "difficulty": "Easy", "category": "Famous Saying", "japanese": "私たちの人生の目的は、幸せになることだ。" },
+  { "id": 102, "text": "Get busy living or get busy dying.", "difficulty": "Normal", "category": "Famous Saying", "japanese": "必死に生きるか、必死に死ぬかだ。" },
+  { "id": 103, "text": "You only live once, but if you do it right, once is enough.", "difficulty": "Normal", "category": "Famous Saying", "japanese": "人生は一度きりだが、うまく生きれば一度で十分だ。" },
+  { "id": 104, "text": "Never let the fear of striking out keep you from playing the game.", "difficulty": "Hard", "category": "Famous Saying", "japanese": "三振を恐れてゲームに参加しないなんてことはするな。" },
+  { "id": 105, "text": "If you want to live a happy life, tie it to a goal, not to people or things.", "difficulty": "Hard", "category": "Famous Saying", "japanese": "幸せな人生を送りたいなら、それを目標に結びつけなさい。人や物ではなく。" },
+  { "id": 106, "text": "The unexamined life is not worth living.", "difficulty": "Normal", "category": "Famous Saying", "japanese": "吟味されざる生に、生きる価値なし。" }
 ]
