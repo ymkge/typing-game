@@ -6,10 +6,13 @@ const scoreElement = document.getElementById('score');
 const restartButton = document.getElementById('restart-button');
 const pauseButton = document.getElementById('pause-button');
 const endGameButton = document.getElementById('end-game-button');
+const quoteSummaryElement = document.getElementById('quote-summary');
 
 const difficultySelectionElement = document.getElementById('difficulty-selection');
+const categorySelectionElement = document.getElementById('category-selection');
 const gameAreaElement = document.getElementById('game-area');
 const difficultyButtons = document.querySelectorAll('.difficulty-button');
+const categoryButtons = document.querySelectorAll('.category-button');
 
 // --- Modal Elements ---
 const resultModal = document.getElementById('result-modal');
@@ -25,12 +28,13 @@ const highscoreListElement = document.getElementById('highscore-list');
 let allQuotes = [];
 let filteredQuotes = [];
 let difficulty = '';
+let category = '';
 
 let startTime;
 let timerInterval;
 let isPaused = false;
 let timeRemaining = 60;
-let currentQuoteString;
+let currentQuote;
 
 // --- Stats Variables ---
 let cumulativeScore = 0; // Total correct characters from *completed* quotes
@@ -57,7 +61,14 @@ function setupEventListeners() {
     difficultyButtons.forEach(button => {
         button.addEventListener('click', () => {
             difficulty = button.dataset.difficulty;
-            startGame(difficulty);
+            showCategorySelection();
+        });
+    });
+
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            category = button.dataset.category;
+            startGame();
         });
     });
 
@@ -68,7 +79,10 @@ function setupEventListeners() {
 
     // Modal listeners
     closeModalButton.addEventListener('click', () => resultModal.style.display = 'none');
-    playAgainButton.addEventListener('click', () => location.reload());
+    playAgainButton.addEventListener('click', () => {
+        resultModal.style.display = 'none';
+        showDifficultySelection();
+    });
     window.addEventListener('click', (event) => {
         if (event.target == resultModal) {
             resultModal.style.display = 'none';
@@ -79,18 +93,50 @@ function setupEventListeners() {
 function showDifficultySelection() {
     gameAreaElement.style.display = 'none';
     resultModal.style.display = 'none';
+    categorySelectionElement.style.display = 'none';
     difficultySelectionElement.style.display = 'block';
 }
 
+function showCategorySelection() {
+    difficultySelectionElement.style.display = 'none';
+
+    // Get available categories for the selected difficulty
+    const availableCategories = [...new Set(
+        allQuotes
+            .filter(quote => quote.difficulty === difficulty)
+            .map(quote => quote.category)
+    )];
+
+    // Show/hide category buttons based on availability
+    categoryButtons.forEach(button => {
+        const category = button.dataset.category;
+        if (category === 'All' || availableCategories.includes(category)) {
+            button.style.display = 'inline-block';
+        } else {
+            button.style.display = 'none';
+        }
+    });
+
+    categorySelectionElement.style.display = 'block';
+}
+
 // --- Game Flow ---
-function startGame(selectedDifficulty) {
-    filteredQuotes = allQuotes.filter(quote => quote.difficulty === selectedDifficulty);
+function startGame() {
+    let quotesByDifficulty = allQuotes.filter(quote => quote.difficulty === difficulty);
+    
+    if (category === 'All') {
+        filteredQuotes = quotesByDifficulty;
+    } else {
+        filteredQuotes = quotesByDifficulty.filter(quote => quote.category === category);
+    }
+
     if (filteredQuotes.length === 0) {
-        alert(`No quotes found for difficulty: ${selectedDifficulty}`);
+        alert(`No quotes found for difficulty: ${difficulty} and category: ${category}`);
+        showDifficultySelection();
         return;
     }
 
-    difficultySelectionElement.style.display = 'none';
+    categorySelectionElement.style.display = 'none';
     gameAreaElement.style.display = 'block';
     quoteInputElement.focus();
 
@@ -102,7 +148,7 @@ function startGame(selectedDifficulty) {
 function resetGameState() {
     cumulativeScore = 0;
     totalTypedChars = 0;
-    currentQuoteString = null;
+    currentQuote = null;
     scoreElement.innerText = 0;
     quoteInputElement.disabled = false;
     quoteInputElement.value = '';
@@ -110,19 +156,21 @@ function resetGameState() {
     timeRemaining = 60;
     timerElement.innerText = timeRemaining;
     pauseButton.innerText = '一時停止';
+    quoteSummaryElement.innerText = '';
     clearInterval(timerInterval);
 }
 
 function renderNewQuote() {
-    if (currentQuoteString) {
-        totalTypedChars += currentQuoteString.length;
+    if (currentQuote) {
+        totalTypedChars += currentQuote.text.length;
     }
 
-    currentQuoteString = getRandomQuote();
+    currentQuote = getRandomQuote();
     quoteInputElement.value = '';
+    quoteSummaryElement.innerText = currentQuote.japanese || '（日本語訳はありません）';
 
     quoteDisplayElement.innerHTML = '';
-    currentQuoteString.split('').forEach(character => {
+    currentQuote.text.split('').forEach(character => {
         const characterSpan = document.createElement('span');
         characterSpan.innerText = character;
         quoteDisplayElement.appendChild(characterSpan);
@@ -135,12 +183,11 @@ function renderNewQuote() {
 }
 
 function getRandomQuote() {
-    const quote = filteredQuotes[Math.floor(Math.random() * filteredQuotes.length)];
-    return quote.text;
+    return filteredQuotes[Math.floor(Math.random() * filteredQuotes.length)];
 }
 
 function handleInput() {
-    if (isPaused) return;
+    if (isPaused || !currentQuote) return;
 
     const arrayQuote = quoteDisplayElement.querySelectorAll('span');
     const arrayValue = quoteInputElement.value.split('');
@@ -169,8 +216,8 @@ function handleInput() {
         arrayQuote[arrayValue.length].classList.add('current');
     }
 
-    if (allCorrectSoFar && arrayValue.length === currentQuoteString.length) {
-        cumulativeScore += currentQuoteString.length;
+    if (allCorrectSoFar && arrayValue.length === currentQuote.text.length) {
+        cumulativeScore += currentQuote.text.length;
         scoreElement.innerText = cumulativeScore;
         renderNewQuote();
     }
@@ -228,7 +275,7 @@ function endGame() {
 
 // --- Results and Highscores ---
 function showResultModal(score, wpm, accuracy) {
-    resultDifficultyElement.innerText = difficulty;
+    resultDifficultyElement.innerText = `${difficulty} / ${category}`;
     resultScoreElement.innerText = score;
     resultWpmElement.innerText = wpm;
     resultAccuracyElement.innerText = `${accuracy}%`;
@@ -239,23 +286,23 @@ function showResultModal(score, wpm, accuracy) {
 }
 
 function saveScore(difficulty, score, wpm, accuracy) {
-    const highScores = getHighScores(difficulty);
+    const highScores = getHighScores(difficulty, category);
     const newScore = { score, wpm, accuracy, date: new Date().toLocaleDateString() };
 
     highScores.push(newScore);
     highScores.sort((a, b) => b.score - a.score);
     highScores.splice(5);
 
-    localStorage.setItem(`highScores_${difficulty}`, JSON.stringify(highScores));
+    localStorage.setItem(`highScores_${difficulty}_${category}`, JSON.stringify(highScores));
 }
 
-function getHighScores(difficulty) {
-    const scoresJSON = localStorage.getItem(`highScores_${difficulty}`);
+function getHighScores(difficulty, category) {
+    const scoresJSON = localStorage.getItem(`highScores_${difficulty}_${category}`);
     return scoresJSON ? JSON.parse(scoresJSON) : [];
 }
 
 function displayHighScores() {
-    const highScores = getHighScores(difficulty);
+    const highScores = getHighScores(difficulty, category);
     highscoreListElement.innerHTML = '';
 
     if (highScores.length === 0) {
