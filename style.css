@@ -391,3 +391,19 @@ p {
     box-shadow: 0 7px 10px rgba(0, 0, 0, 0.15);
     background-color: #5a6268;
 }
+
+/* --- Timer Animations --- */
+@keyframes pulsate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.timer-warning {
+    color: #ffc107 !important; /* Yellow */
+}
+
+.timer-danger {
+    color: #dc3545 !important; /* Red */
+    animation: pulsate 1s infinite;
+}

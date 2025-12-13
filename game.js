@@ -155,6 +155,7 @@ function resetGameState() {
     isPaused = false;
     timeRemaining = 60;
     timerElement.innerText = timeRemaining;
+    timerElement.classList.remove('timer-warning', 'timer-danger'); // Reset timer color
     pauseButton.innerText = '一時停止';
     quoteSummaryElement.innerText = '';
     clearInterval(timerInterval);
@@ -238,6 +239,17 @@ function startTimer() {
         const elapsedTime = Math.floor((new Date() - startTime) / 1000);
         const currentRemaining = timeRemaining - elapsedTime;
         timerElement.innerText = currentRemaining;
+
+        // Update timer color based on remaining time
+        if (currentRemaining <= 10) {
+            timerElement.classList.add('timer-danger');
+            timerElement.classList.remove('timer-warning');
+        } else if (currentRemaining <= 30) {
+            timerElement.classList.add('timer-warning');
+            timerElement.classList.remove('timer-danger');
+        } else {
+            timerElement.classList.remove('timer-warning', 'timer-danger');
+        }
 
         if (currentRemaining <= 0) {
             clearInterval(timerInterval);
