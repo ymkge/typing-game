@@ -1,0 +1,25 @@
+{
+  "name": "typing-game",
+  "version": "1.0.0",
+  "description": "A typing game built with HTML, CSS, and JavaScript.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ymkge/typing-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/ymkge/typing-game/issues"
+  },
+  "homepage": "https://github.com/ymkge/typing-game#readme",
+  "devDependencies": {
+    "vite": "^7.3.0"
+  }
+}
