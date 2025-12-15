@@ -1,3 +1,5 @@
+import quotes from './quotes.json';
+
 // --- DOM Elements ---
 const quoteDisplayElement = document.getElementById('quote-display');
 const quoteInputElement = document.getElementById('quote-input');
@@ -41,20 +43,14 @@ let cumulativeScore = 0; // Total correct characters from *completed* quotes
 let totalTypedChars = 0; // Total characters typed in the game
 
 // --- Initialization ---
-async function initializeGame() {
-    await loadAllQuotes();
+function initializeGame() {
+    loadAllQuotes();
     setupEventListeners();
     showDifficultySelection();
 }
 
-async function loadAllQuotes() {
-    try {
-        const response = await fetch('quotes.json');
-        allQuotes = await response.json();
-    } catch (error) {
-        console.error('Error loading quotes:', error);
-        alert('Failed to load quotes. Please check quotes.json.');
-    }
+function loadAllQuotes() {
+    allQuotes = quotes;
 }
 
 function setupEventListeners() {
