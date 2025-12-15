@@ -23,3 +23,7 @@ export const resultScoreElement = document.getElementById('result-score');
 export const resultWpmElement = document.getElementById('result-wpm');
 export const resultAccuracyElement = document.getElementById('result-accuracy');
 export const highscoreListElement = document.getElementById('highscore-list');
+
+// --- Countdown Elements ---
+export const countdownOverlay = document.getElementById('countdown-overlay');
+export const countdownText = document.getElementById('countdown-text');

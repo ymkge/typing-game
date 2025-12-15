@@ -20,7 +20,9 @@ import {
     resultScoreElement,
     resultWpmElement,
     resultAccuracyElement,
-    highscoreListElement
+    highscoreListElement,
+    countdownOverlay,
+    countdownText
 } from './dom.js';
 import { state } from './state.js';
 import { saveScore, displayHighScores } from './highscore.js';
@@ -60,7 +62,8 @@ export function showCategorySelection() {
 }
 
 // --- Game Flow ---
-export function startGame() {
+export async function startGame() {
+    // 1. Prepare quotes
     let quotesByDifficulty = state.allQuotes.filter(quote => quote.difficulty === state.difficulty);
     
     if (state.category === 'All') {
@@ -75,12 +78,36 @@ export function startGame() {
         return;
     }
 
+    // 2. Prepare UI
     categorySelectionElement.style.display = 'none';
     gameAreaElement.style.display = 'block';
-    quoteInputElement.focus();
-
     resetGameState();
     renderNewQuote();
+    quoteInputElement.disabled = true; // Disable input during countdown
+
+    // 3. Countdown
+    countdownOverlay.style.display = 'flex';
+    let count = 3;
+    countdownText.innerText = count;
+
+    await new Promise(resolve => {
+        const countdownInterval = setInterval(() => {
+            count--;
+            if (count > 0) {
+                countdownText.innerText = count;
+            } else if (count === 0) {
+                countdownText.innerText = 'Go!';
+            } else {
+                clearInterval(countdownInterval);
+                countdownOverlay.style.display = 'none';
+                resolve();
+            }
+        }, 1000);
+    });
+
+    // 4. Start Game
+    quoteInputElement.disabled = false;
+    quoteInputElement.focus();
     startTimer();
 }
 
