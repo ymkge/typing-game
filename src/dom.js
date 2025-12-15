@@ -27,3 +27,6 @@ export const highscoreListElement = document.getElementById('highscore-list');
 // --- Countdown Elements ---
 export const countdownOverlay = document.getElementById('countdown-overlay');
 export const countdownText = document.getElementById('countdown-text');
+
+// --- Progress Bar Elements ---
+export const progressBar = document.getElementById('progress-bar');

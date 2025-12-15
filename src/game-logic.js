@@ -1,4 +1,3 @@
-import quotes from './quotes.json';
 import {
     quoteDisplayElement,
     quoteInputElement,
@@ -22,7 +21,8 @@ import {
     resultAccuracyElement,
     highscoreListElement,
     countdownOverlay,
-    countdownText
+    countdownText,
+    progressBar
 } from './dom.js';
 import { state } from './state.js';
 import { saveScore, displayHighScores } from './highscore.js';
@@ -135,6 +135,7 @@ export function renderNewQuote() {
     state.currentQuote = getRandomQuote();
     quoteInputElement.value = '';
     quoteSummaryElement.innerText = state.currentQuote.japanese || '（日本語訳はありません）';
+    progressBar.style.width = '0%'; // Reset progress bar
 
     quoteDisplayElement.innerHTML = '';
     state.currentQuote.text.split('').forEach(character => {
@@ -167,6 +168,10 @@ export function handleInput() {
 
     const arrayQuote = quoteDisplayElement.querySelectorAll('span');
     const arrayValue = quoteInputElement.value.split('');
+
+    // Update progress bar
+    const progress = (arrayValue.length / arrayQuote.length) * 100;
+    progressBar.style.width = `${progress}%`;
 
     arrayQuote.forEach(span => span.classList.remove('current'));
 
