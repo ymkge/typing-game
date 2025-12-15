@@ -8,7 +8,8 @@ import {
     closeModalButton,
     playAgainButton,
     resultModal,
-    shareButton
+    shareButton,
+    soundButton
 } from './dom.js';
 import { state } from './state.js';
 import {
@@ -20,6 +21,7 @@ import {
     confirmEndGame,
     handleInput
 } from './game-logic.js';
+import { setSoundEnabled } from './audio.js';
 
 function setupEventListeners() {
     difficultyButtons.forEach(button => {
@@ -66,12 +68,21 @@ WPM: ${wpm}
         const url = `https://twitter.com/intent/tweet?text=${encodedText}`;
         window.open(url, '_blank');
     });
+
+    soundButton.addEventListener('click', () => {
+        state.isSoundEnabled = !state.isSoundEnabled;
+        setSoundEnabled(state.isSoundEnabled);
+        soundButton.innerText = state.isSoundEnabled ? '🔊' : '🔇';
+    });
 }
 
 function initializeGame() {
     loadAllQuotes();
     setupEventListeners();
     showDifficultySelection();
+    // Initialize sound state
+    setSoundEnabled(state.isSoundEnabled);
+    soundButton.innerText = state.isSoundEnabled ? '🔊' : '🔇';
 }
 
 // --- Start the application ---

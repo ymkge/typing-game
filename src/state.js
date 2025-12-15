@@ -12,4 +12,5 @@ export const state = {
     totalTypedChars: 0,
     wpm: 0,
     accuracy: 0,
+    isSoundEnabled: true,
 };

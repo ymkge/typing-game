@@ -26,6 +26,7 @@ import {
 } from './dom.js';
 import { state } from './state.js';
 import { saveScore, displayHighScores } from './highscore.js';
+import { playErrorSound, playCorrectSound, playFinishSound } from './audio.js';
 
 export function loadAllQuotes() {
     state.allQuotes = quotes;
@@ -176,6 +177,7 @@ export function handleInput() {
     arrayQuote.forEach(span => span.classList.remove('current'));
 
     let allCorrectSoFar = true;
+    let hasError = false;
     for (let i = 0; i < arrayQuote.length; i++) {
         const characterSpan = arrayQuote[i];
         const character = arrayValue[i];
@@ -190,6 +192,10 @@ export function handleInput() {
             characterSpan.classList.add('incorrect');
             characterSpan.classList.remove('correct');
             allCorrectSoFar = false;
+            if (!hasError) {
+                playErrorSound();
+                hasError = true;
+            }
         }
     }
 
@@ -198,6 +204,7 @@ export function handleInput() {
     }
 
     if (allCorrectSoFar && arrayValue.length === state.currentQuote.text.length) {
+        playCorrectSound();
         state.cumulativeScore += state.currentQuote.text.length;
         scoreElement.innerText = state.cumulativeScore;
         renderNewQuote();
@@ -265,6 +272,7 @@ export function endGame() {
     state.wpm = wpm;
     state.accuracy = accuracy;
 
+    playFinishSound();
     saveScore(state.difficulty, state.category, state.cumulativeScore, wpm, accuracy);
     showResultModal(state.cumulativeScore, wpm, accuracy);
 }

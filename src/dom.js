@@ -33,3 +33,6 @@ export const progressBar = document.getElementById('progress-bar');
 
 // --- Share Button ---
 export const shareButton = document.getElementById('share-button');
+
+// --- Sound Button ---
+export const soundButton = document.getElementById('sound-button');
