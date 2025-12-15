@@ -10,4 +10,6 @@ export const state = {
     currentQuote: null,
     cumulativeScore: 0,
     totalTypedChars: 0,
+    wpm: 0,
+    accuracy: 0,
 };

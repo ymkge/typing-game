@@ -348,10 +348,24 @@ p {
 
 #play-again-button {
     background-color: #28a745;
-    margin-top: 10px;
 }
 #play-again-button:hover {
     background-color: #218838;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+#share-button {
+    background-color: #1DA1F2; /* Twitter Blue */
+}
+
+#share-button:hover {
+    background-color: #0c85d0;
 }
 
 .quote-summary {

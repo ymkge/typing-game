@@ -261,6 +261,10 @@ export function endGame() {
     const wpm = Math.round((state.cumulativeScore / 5) / 1);
     const accuracy = state.totalTypedChars > 0 ? Math.round((state.cumulativeScore / state.totalTypedChars) * 100) : 0;
 
+    // Save to state
+    state.wpm = wpm;
+    state.accuracy = accuracy;
+
     saveScore(state.difficulty, state.category, state.cumulativeScore, wpm, accuracy);
     showResultModal(state.cumulativeScore, wpm, accuracy);
 }

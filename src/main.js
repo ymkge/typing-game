@@ -7,7 +7,8 @@ import {
     quoteInputElement,
     closeModalButton,
     playAgainButton,
-    resultModal
+    resultModal,
+    shareButton
 } from './dom.js';
 import { state } from './state.js';
 import {
@@ -50,6 +51,20 @@ function setupEventListeners() {
         if (event.target == resultModal) {
             resultModal.style.display = 'none';
         }
+    });
+
+    shareButton.addEventListener('click', () => {
+        const { difficulty, category, cumulativeScore, wpm, accuracy } = state;
+        const text = `タイピングゲームでハイスコアを達成しました！
+難易度: ${difficulty} (${category})
+スコア: ${cumulativeScore}
+WPM: ${wpm}
+正答率: ${accuracy}%
+
+#タイピングゲーム`;
+        const encodedText = encodeURIComponent(text);
+        const url = `https://twitter.com/intent/tweet?text=${encodedText}`;
+        window.open(url, '_blank');
     });
 }
 

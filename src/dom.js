@@ -30,3 +30,6 @@ export const countdownText = document.getElementById('countdown-text');
 
 // --- Progress Bar Elements ---
 export const progressBar = document.getElementById('progress-bar');
+
+// --- Share Button ---
+export const shareButton = document.getElementById('share-button');
