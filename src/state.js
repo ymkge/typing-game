@@ -1,0 +1,13 @@
+export const state = {
+    allQuotes: [],
+    filteredQuotes: [],
+    difficulty: '',
+    category: '',
+    startTime: null,
+    timerInterval: null,
+    isPaused: false,
+    timeRemaining: 60,
+    currentQuote: null,
+    cumulativeScore: 0,
+    totalTypedChars: 0,
+};
