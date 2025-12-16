@@ -11,7 +11,13 @@ import {
     gameAreaElement,
     countdownOverlay,
     countdownText,
-    progressBar
+    progressBar,
+    resultModal,
+    categoryButtons,
+    resultDifficultyElement,
+    resultScoreElement,
+    resultWpmElement,
+    resultAccuracyElement
 } from './dom.ts';
 import { state, Quote } from './state.ts';
 import { saveScore, displayHighScores } from './highscore.ts';
@@ -39,8 +45,8 @@ export function showCategorySelection(): void {
     )];
 
     // Show/hide category buttons based on availability
-    categoryButtons.forEach(button => {
-        const category = (button as HTMLButtonElement).dataset.category;
+    categoryButtons.forEach((button: HTMLButtonElement) => {
+        const category = button.dataset.category;
         if (category === 'All' || (category && availableCategories.includes(category))) {
             button.style.display = 'inline-block';
         } else {
@@ -174,7 +180,7 @@ export function handleInput(): void {
     const progress = (arrayValue.length / arrayQuote.length) * 100;
     progressBar.style.width = `${progress}%`;
 
-    arrayQuote.forEach(span => span.classList.remove('current'));
+    arrayQuote.forEach((span: HTMLSpanElement) => span.classList.remove('current'));
 
     let allCorrectSoFar = true;
     let hasError = false;
