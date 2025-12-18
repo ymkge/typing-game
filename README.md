@@ -1,5 +1,6 @@
 # タイピングゲーム
-<img width="1015" height="751" alt="スクリーンショット 2025-08-13 19 42 47" src="https://github.com/user-attachments/assets/0ed7c8b7-3d2c-4e40-a25a-656af2a4a02a" />
+<img width="1013" height="799" alt="スクリーンショット 2025-12-18 20 46 54" src="https://github.com/user-attachments/assets/b8aca445-dd9b-402d-a1bf-45d245b594ad" />
+
 
 ## 概要
 このタイピングゲームは、60秒間でどれだけ正確に、そして速く英文をタイピングできるかを競うゲームです。難易度や出題カテゴリを選択する機能やハイスコアランキングも搭載しており、楽しみながらタイピングスキルを向上させることができます。
