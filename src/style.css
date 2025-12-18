@@ -189,6 +189,61 @@ p {
     opacity: 0.7;
 }
 
+/* --- Mode Selection --- */
+#mode-selection {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    animation: fadeIn 1s ease-out;
+}
+
+.mode-button {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.3em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: white;
+}
+
+.mode-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 10px rgba(0, 0, 0, 0.15);
+}
+
+.mode-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Specific colors for mode buttons */
+.mode-button[data-mode="Normal"] {
+    background-color: #007bff; /* Blue */
+}
+.mode-button[data-mode="Normal"]:hover {
+    background-color: #0056b3;
+}
+
+.mode-button[data-mode="Survival"] {
+    background-color: #28a745; /* Green */
+}
+.mode-button[data-mode="Survival"]:hover {
+    background-color: #218838;
+}
+
+.mode-button[data-mode="TimeAttack"] {
+    background-color: #ffc107; /* Yellow */
+    color: #333;
+}
+.mode-button[data-mode="TimeAttack"]:hover {
+    background-color: #e0a800;
+}
+
 /* --- Difficulty Selection --- */
 #difficulty-selection {
     display: flex;
@@ -489,7 +544,7 @@ p {
     .quote-input {
         font-size: 1.2em;
     }
-    .difficulty-button, .category-button, .control-button {
+    .difficulty-button, .category-button, .control-button, .mode-button {
         padding: 12px 20px;
         font-size: 1em;
     }
@@ -526,7 +581,7 @@ p {
     .stat .value {
         font-size: 1.5em;
     }
-    .controls, #difficulty-selection, #category-selection {
+    .controls, #difficulty-selection, #category-selection, #mode-selection {
         flex-direction: column;
         gap: 10px;
     }

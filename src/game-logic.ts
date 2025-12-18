@@ -6,6 +6,7 @@ import {
     scoreElement,
     pauseButton,
     quoteSummaryElement,
+    modeSelectionElement,
     difficultySelectionElement,
     categorySelectionElement,
     gameAreaElement,
@@ -27,7 +28,16 @@ export function loadAllQuotes(): void {
     state.allQuotes = quotesData as Quote[];
 }
 
+export function showModeSelection(): void {
+    gameAreaElement.style.display = 'none';
+    resultModal.style.display = 'none';
+    categorySelectionElement.style.display = 'none';
+    difficultySelectionElement.style.display = 'none';
+    modeSelectionElement.style.display = 'block';
+}
+
 export function showDifficultySelection(): void {
+    modeSelectionElement.style.display = 'none';
     gameAreaElement.style.display = 'none';
     resultModal.style.display = 'none';
     categorySelectionElement.style.display = 'none';
@@ -35,6 +45,7 @@ export function showDifficultySelection(): void {
 }
 
 export function showCategorySelection(): void {
+    modeSelectionElement.style.display = 'none';
     difficultySelectionElement.style.display = 'none';
 
     // Get available categories for the selected difficulty
@@ -70,7 +81,7 @@ export async function startGame(): Promise<void> {
 
     if (state.filteredQuotes.length === 0) {
         alert(`No quotes found for difficulty: ${state.difficulty} and category: ${state.category}`);
-        showDifficultySelection();
+        showModeSelection();
         return;
     }
 
@@ -134,7 +145,7 @@ export function renderNewQuote(): void {
     if (!state.currentQuote) {
         // This case should ideally not happen if filteredQuotes is not empty
         alert('No more quotes available!');
-        showDifficultySelection();
+        showModeSelection();
         return;
     }
     quoteInputElement.value = '';
@@ -231,7 +242,6 @@ export function startTimer(): void {
             timerElement.classList.remove('timer-warning');
         } else if (currentRemaining <= 30) {
             timerElement.classList.add('timer-warning');
-            timerElement.classList.remove('timer-danger');
         } else {
             timerElement.classList.remove('timer-warning', 'timer-danger');
         }

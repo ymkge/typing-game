@@ -13,9 +13,15 @@
             <span id="countdown-text"></span>
         </div>
         <h1>タイピングゲーム</h1>
-        <p>難易度を選択してゲームを開始してください。</p>
+        <p>ゲームモードを選択してください。</p>
 
-        <div id="difficulty-selection">
+        <div id="mode-selection">
+            <button class="mode-button" data-mode="Normal">ノーマル</button>
+            <button class="mode-button" data-mode="Survival">サバイバル</button>
+            <button class="mode-button" data-mode="TimeAttack">タイムアタック</button>
+        </div>
+
+        <div id="difficulty-selection" style="display: none;">
             <button class="difficulty-button" data-difficulty="Easy">Easy</button>
             <button class="difficulty-button" data-difficulty="Normal">Normal</button>
             <button class="difficulty-button" data-difficulty="Hard">Hard</button>

@@ -8,9 +8,11 @@ export const pauseButton = document.getElementById('pause-button') as HTMLButton
 export const endGameButton = document.getElementById('end-game-button') as HTMLButtonElement;
 export const quoteSummaryElement = document.getElementById('quote-summary') as HTMLDivElement;
 
+export const modeSelectionElement = document.getElementById('mode-selection') as HTMLDivElement;
 export const difficultySelectionElement = document.getElementById('difficulty-selection') as HTMLDivElement;
 export const categorySelectionElement = document.getElementById('category-selection') as HTMLDivElement;
 export const gameAreaElement = document.getElementById('game-area') as HTMLDivElement;
+export const modeButtons = document.querySelectorAll('.mode-button') as NodeListOf<HTMLButtonElement>;
 export const difficultyButtons = document.querySelectorAll('.difficulty-button') as NodeListOf<HTMLButtonElement>;
 export const categoryButtons = document.querySelectorAll('.category-button') as NodeListOf<HTMLButtonElement>;
 

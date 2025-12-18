@@ -1,3 +1,5 @@
+export type GameMode = 'Normal' | 'Survival' | 'TimeAttack';
+
 export interface Quote {
     id: number;
     text: string;
@@ -7,6 +9,7 @@ export interface Quote {
 }
 
 interface GameState {
+    gameMode: GameMode | ''; // Allow empty string for initial state
     allQuotes: Quote[];
     filteredQuotes: Quote[];
     difficulty: string;
@@ -24,6 +27,7 @@ interface GameState {
 }
 
 export const state: GameState = {
+    gameMode: '',
     allQuotes: [],
     filteredQuotes: [],
     difficulty: '',
