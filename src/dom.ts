@@ -16,6 +16,12 @@ export const modeButtons = document.querySelectorAll('.mode-button') as NodeList
 export const difficultyButtons = document.querySelectorAll('.difficulty-button') as NodeListOf<HTMLButtonElement>;
 export const categoryButtons = document.querySelectorAll('.category-button') as NodeListOf<HTMLButtonElement>;
 
+// --- Game Stats ---
+export const timerStatElement = document.getElementById('timer-stat') as HTMLDivElement;
+export const scoreStatElement = document.getElementById('score-stat') as HTMLDivElement;
+export const questionCounterStatElement = document.getElementById('question-counter-stat') as HTMLDivElement;
+export const questionCounterElement = document.getElementById('question-counter') as HTMLDivElement;
+
 // --- Modal Elements ---
 export const resultModal = document.getElementById('result-modal') as HTMLDivElement;
 export const closeModalButton = document.querySelector('.close-button') as HTMLSpanElement;

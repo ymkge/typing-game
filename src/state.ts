@@ -24,6 +24,10 @@ interface GameState {
     wpm: number;
     accuracy: number;
     isSoundEnabled: boolean;
+    // Time Attack Mode specific state
+    questionsToClear: number;
+    clearedQuestions: number;
+    elapsedTime: number; // in seconds
 }
 
 export const state: GameState = {
@@ -42,4 +46,8 @@ export const state: GameState = {
     wpm: 0,
     accuracy: 0,
     isSoundEnabled: true,
+    // Time Attack Mode specific state
+    questionsToClear: 5, // Default to 5 questions
+    clearedQuestions: 0,
+    elapsedTime: 0,
 };

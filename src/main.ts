@@ -1,4 +1,5 @@
 import {
+    modeButtons,
     difficultyButtons,
     categoryButtons,
     restartButton,
@@ -11,9 +12,10 @@ import {
     shareButton,
     soundButton
 } from './dom.ts';
-import { state } from './state.ts';
+import { state, GameMode } from './state.ts';
 import {
     loadAllQuotes,
+    showModeSelection,
     showDifficultySelection,
     showCategorySelection,
     startGame,
@@ -24,6 +26,13 @@ import {
 import { setSoundEnabled } from './audio.ts';
 
 function setupEventListeners(): void {
+    modeButtons.forEach((button: HTMLButtonElement) => {
+        button.addEventListener('click', () => {
+            state.gameMode = (button.dataset.mode as GameMode) || '';
+            showDifficultySelection();
+        });
+    });
+
     difficultyButtons.forEach((button: HTMLButtonElement) => {
         button.addEventListener('click', () => {
             state.difficulty = button.dataset.difficulty || '';
@@ -47,7 +56,7 @@ function setupEventListeners(): void {
     closeModalButton.addEventListener('click', () => resultModal.style.display = 'none');
     playAgainButton.addEventListener('click', () => {
         resultModal.style.display = 'none';
-        showDifficultySelection();
+        showModeSelection();
     });
     window.addEventListener('click', (event: MouseEvent) => {
         if (event.target instanceof HTMLElement && event.target === resultModal) {
@@ -79,7 +88,7 @@ WPM: ${wpm}
 function initializeGame(): void {
     loadAllQuotes();
     setupEventListeners();
-    showDifficultySelection();
+    showModeSelection();
     // Initialize sound state
     setSoundEnabled(state.isSoundEnabled);
     soundButton.innerText = state.isSoundEnabled ? '🔊' : '🔇';
