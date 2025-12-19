@@ -7,6 +7,7 @@ import {
     pauseButton,
     quoteSummaryElement,
     modeSelectionElement,
+    modeSelectionTextElement,
     difficultySelectionElement,
     categorySelectionElement,
     gameAreaElement,
@@ -46,6 +47,7 @@ export function showModeSelection(): void {
     categorySelectionElement.style.display = 'none';
     difficultySelectionElement.style.display = 'none';
     modeSelectionElement.style.display = 'block';
+    modeSelectionTextElement.style.display = 'block';
 }
 
 export function showDifficultySelection(): void {
@@ -88,6 +90,7 @@ export async function startGame(): Promise<void> {
         return;
     }
 
+    modeSelectionTextElement.style.display = 'none';
     categorySelectionElement.style.display = 'none';
     gameAreaElement.style.display = 'block';
     resetGameState();

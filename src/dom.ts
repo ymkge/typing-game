@@ -9,6 +9,7 @@ export const endGameButton = document.getElementById('end-game-button') as HTMLB
 export const quoteSummaryElement = document.getElementById('quote-summary') as HTMLDivElement;
 
 export const modeSelectionElement = document.getElementById('mode-selection') as HTMLDivElement;
+export const modeSelectionTextElement = document.getElementById('mode-selection-text') as HTMLParagraphElement;
 export const difficultySelectionElement = document.getElementById('difficulty-selection') as HTMLDivElement;
 export const categorySelectionElement = document.getElementById('category-selection') as HTMLDivElement;
 export const gameAreaElement = document.getElementById('game-area') as HTMLDivElement;
